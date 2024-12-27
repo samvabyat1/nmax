@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "950492184348",
+    "project_id": "nmaxapp",
+    "storage_bucket": "nmaxapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:950492184348:android:78616f24016d9cf517c4d9",
+        "android_client_info": {
+          "package_name": "com.example.nmax"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtznEkVEG7sk5qAexwNPE0-FWwHUWPj-k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

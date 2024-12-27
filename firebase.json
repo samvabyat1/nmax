@@ -1,0 +1,23 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "nmaxapp",
+          "appId": "1:950492184348:android:78616f24016d9cf517c4d9",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "nmaxapp",
+          "configurations": {
+            "android": "1:950492184348:android:78616f24016d9cf517c4d9",
+            "ios": "1:950492184348:ios:eed7f0a64caef58717c4d9",
+            "web": "1:950492184348:web:26c3362000c489cf17c4d9"
+          }
+        }
+      }
+    }
+  }
+}
