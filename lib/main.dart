@@ -38,6 +38,9 @@ class MyApp extends StatelessWidget {
           backgroundColor: AppColors.bg,
           titleTextStyle: AppTypography.ha,
         ),
+        cardTheme: CardTheme(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30))),
         scaffoldBackgroundColor: AppColors.bg,
         iconTheme: IconThemeData(color: AppColors.fg),
         primarySwatch: Colors.deepPurple,

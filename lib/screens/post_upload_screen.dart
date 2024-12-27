@@ -84,6 +84,14 @@ class _PostUploadScreenState extends State<PostUploadScreen> {
       );
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+
+    _textController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(

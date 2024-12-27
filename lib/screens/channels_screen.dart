@@ -10,7 +10,6 @@ class ChannelsScreen extends StatelessWidget {
         title: Text(
           'Channels',
         ),
-        // centerTitle: true,
       ),
     );
   }
