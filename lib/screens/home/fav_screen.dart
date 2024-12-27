@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nmax/screens/post_upload_screen.dart';
+import 'package:widgets_to_image/widgets_to_image.dart';
 
 class FavScreen extends StatelessWidget {
   const FavScreen({super.key});
@@ -53,27 +54,33 @@ class FavScreen extends StatelessWidget {
                       cardsCount: 20,
                       cardBuilder: (context, index, horizontalOffsetPercentage,
                           verticalOffsetPercentage) {
-                        return Card(
-                          color: Colors.pink[300],
-                          clipBehavior: Clip.antiAlias,
-                          child: SizedBox(
-                            height: double.maxFinite,
-                            width: double.maxFinite,
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  CupertinoPageRoute(
-                                    builder: (context) => PostUploadScreen(
-                                        url:
-                                            "https://picsum.photos/540/720?random=$index"),
+                        var _controller = WidgetsToImageController();
+
+                        return WidgetsToImage(
+                          controller: _controller,
+                          child: Card(
+                            color: Colors.pink[300],
+                            clipBehavior: Clip.antiAlias,
+                            child: SizedBox(
+                              height: double.maxFinite,
+                              width: double.maxFinite,
+                              child: GestureDetector(
+                                onTap: () async {
+                                  final bytes = await _controller.capture();
+
+                                  Navigator.push(
+                                    context,
+                                    CupertinoPageRoute(
+                                      builder: (context) =>
+                                          PostUploadScreen(bytes: bytes),
+                                    ),
+                                  );
+                                },
+                                child: Image(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(
+                                    "https://picsum.photos/540/720?random=$index",
                                   ),
-                                );
-                              },
-                              child: Image(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(
-                                  "https://picsum.photos/540/720?random=$index",
                                 ),
                               ),
                             ),

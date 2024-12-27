@@ -27,6 +27,7 @@ dependencies:
   path_provider: ^2.1.5
   provider: ^6.1.2
   smooth_page_indicator: ^1.2.0+3
+  widgets_to_image: ^1.0.0
 
 dev_dependencies:
   flutter_lints: ^4.0.0

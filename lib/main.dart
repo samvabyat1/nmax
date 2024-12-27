@@ -11,7 +11,7 @@ import 'package:nmax/screens/auth/first_screen.dart';
 import 'package:nmax/screens/direct/direct_screen.dart';
 import 'package:nmax/screens/home/home_screen.dart';
 import 'package:nmax/screens/profile_screen.dart';
-import 'package:nmax/screens/servers_screen.dart';
+import 'package:nmax/screens/channels_screen.dart';
 import 'package:nmax/utils/styles.dart';
 
 void main() async {
@@ -94,7 +94,7 @@ class _NavScreenState extends State<NavScreen> {
 
   List<Widget> _pages = [
     HomeScreen(),
-    ServersScreen(),
+    ChannelsScreen(),
     DirectScreen(),
     ProfileScreen(),
   ];
@@ -125,7 +125,7 @@ class _NavScreenState extends State<NavScreen> {
             GButton(
               backgroundColor: Colors.deepOrange,
               icon: CupertinoIcons.cloud,
-              text: 'Servers',
+              text: 'Channels',
             ),
             GButton(
               backgroundColor: Colors.pinkAccent,
