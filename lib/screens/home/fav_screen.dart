@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nmax/screens/post_upload_screen.dart';
+import 'package:nmax/screens/post/post_upload_screen.dart';
+import 'package:nmax/utils/styles.dart';
 import 'package:widgets_to_image/widgets_to_image.dart';
 
 class FavScreen extends StatelessWidget {
@@ -66,7 +67,17 @@ class FavScreen extends StatelessWidget {
                               width: double.maxFinite,
                               child: GestureDetector(
                                 onTap: () async {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => Center(
+                                        child: Text(
+                                      'Preparing fav...',
+                                      style: AppTypography.body,
+                                    )),
+                                  );
                                   final bytes = await _controller.capture();
+
+                                  Navigator.pop(context);
 
                                   Navigator.push(
                                     context,

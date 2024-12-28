@@ -25,9 +25,11 @@ dependencies:
   google_sign_in: ^6.2.2
   http: ^1.2.2
   line_icons: ^2.0.3
+  matrix_gesture_detector_pro: ^1.0.0
   palette_generator: ^0.3.3+5
   path_provider: ^2.1.5
   provider: ^6.1.2
+  qr_flutter: ^4.1.0
   smooth_page_indicator: ^1.2.0+3
   widgets_to_image: ^1.0.0
 
@@ -41,11 +43,7 @@ flutter:
   assets:
     - assets/icon.png
     - assets/icon_bg.png
-    - assets/sharing.png
+    - assets/icon_fg.png
     - assets/google.png
-    - assets/moustache.png
-    - assets/sustainable.png
-    - assets/compact-disc.png
-    - assets/placeholder.png
     - assets/technology.png
     - assets/wish-list.png

@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
-import 'package:nmax/backend/home.dart';
+import 'package:nmax/backend/profile.dart';
 import 'package:nmax/models/post.dart';
+import 'package:nmax/screens/profile_screen.dart';
 import 'package:nmax/utils/styles.dart';
 
 class FeedScreen extends StatefulWidget {
@@ -118,20 +120,48 @@ class _FeedScreenState extends State<FeedScreen> {
                   child: AspectRatio(
                     aspectRatio: 3 / 4,
                     child: StreamBuilder(
-                        stream: allposts,
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                                  ConnectionState.waiting ||
-                              snapshot.hasError ||
-                              snapshot.hasData == false)
-                            return CardSwiper(
-                              padding: EdgeInsets.all(5),
-                              cardsCount: 2,
-                              cardBuilder: (context,
-                                  index,
-                                  horizontalOffsetPercentage,
-                                  verticalOffsetPercentage) {
-                                return Card(
+                      stream: allposts,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                                ConnectionState.waiting ||
+                            snapshot.hasError ||
+                            snapshot.hasData == false)
+                          return CardSwiper(
+                            padding: EdgeInsets.all(5),
+                            cardsCount: 2,
+                            cardBuilder: (context,
+                                index,
+                                horizontalOffsetPercentage,
+                                verticalOffsetPercentage) {
+                              return Card(
+                                color: Colors.deepPurple[300],
+                                clipBehavior: Clip.antiAlias,
+                                child: SizedBox(
+                                  height: double.maxFinite,
+                                  width: double.maxFinite,
+                                  child: Image(
+                                    fit: BoxFit.cover,
+                                    image: NetworkImage(
+                                      "https://picsum.photos/1080?random=$index",
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+
+                        return CardSwiper(
+                          padding: EdgeInsets.all(5),
+                          cardsCount: snapshot.data!.size,
+                          cardBuilder: (context,
+                              index,
+                              horizontalOffsetPercentage,
+                              verticalOffsetPercentage) {
+                            var post = PostModel.fromJson(snapshot.data!.docs[index].id,
+                                snapshot.data!.docs[index].data());
+                            return Stack(
+                              children: [
+                                Card(
                                   color: Colors.deepPurple[300],
                                   clipBehavior: Clip.antiAlias,
                                   child: SizedBox(
@@ -140,45 +170,27 @@ class _FeedScreenState extends State<FeedScreen> {
                                     child: Image(
                                       fit: BoxFit.cover,
                                       image: NetworkImage(
-                                        "https://picsum.photos/1080?random=$index",
+                                        post.url ?? '',
                                       ),
                                     ),
                                   ),
-                                );
-                              },
-                            );
-
-                          return CardSwiper(
-                            padding: EdgeInsets.all(5),
-                            cardsCount: snapshot.data!.size,
-                            cardBuilder: (context,
-                                index,
-                                horizontalOffsetPercentage,
-                                verticalOffsetPercentage) {
-                              var post = PostModel.fromJson(
-                                  snapshot.data!.docs[index].data());
-                              return Stack(
-                                children: [
-                                  Card(
-                                    color: Colors.deepPurple[300],
-                                    clipBehavior: Clip.antiAlias,
-                                    child: SizedBox(
-                                      height: double.maxFinite,
-                                      width: double.maxFinite,
-                                      child: Image(
-                                        fit: BoxFit.cover,
-                                        image: NetworkImage(
-                                          post.url ?? '',
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20, vertical: 15),
-                                    child: Row(
-                                      children: [
-                                        ClipOval(
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20, vertical: 15),
+                                  child: Row(
+                                    children: [
+                                      ClipOval(
+                                        child: InkWell(
+                                          onTap: () => Navigator.push(
+                                              context,
+                                              CupertinoPageRoute(
+                                                builder: (context) =>
+                                                    ProfileScreen(
+                                                  username:
+                                                      post.user.toString(),
+                                                ),
+                                              )),
                                           child: Image.asset(
                                             'assets/icon.png',
                                             color: Colors.white,
@@ -186,19 +198,21 @@ class _FeedScreenState extends State<FeedScreen> {
                                             width: 30,
                                           ),
                                         ),
-                                        space(10),
-                                        Text(
-                                          post.user ?? 'nmax user',
-                                          style: AppTypography.h6oi,
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              );
-                            },
-                          );
-                        },),
+                                      ),
+                                      space(10),
+                                      Text(
+                                        post.user ?? 'nmax user',
+                                        style: AppTypography.h6oi,
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            );
+                          },
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),

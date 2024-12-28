@@ -5,6 +5,7 @@ import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nmax/screens/post/matrixgd.dart';
 import 'package:nmax/utils/styles.dart';
 import 'package:widgets_to_image/widgets_to_image.dart';
 
@@ -85,7 +86,6 @@ class _PostUploadScreenState extends State<PostUploadScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
 
     _textController.dispose();
@@ -114,11 +114,10 @@ class _PostUploadScreenState extends State<PostUploadScreen> {
                       widget.bytes!,
                       fit: BoxFit.cover,
                     ),
-                    GestureDetector(
-                      onTap: () => openTextEditor(),
+                    MatrixGD(
                       child: Text(
                         textAlign: TextAlign.center,
-                        _textController.text,
+                        _textController.text.trim(),
                         style: GoogleFonts.getFont(
                           fs[fsi],
                           color: cl,
@@ -126,7 +125,7 @@ class _PostUploadScreenState extends State<PostUploadScreen> {
                           fontSize: sz[szi],
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

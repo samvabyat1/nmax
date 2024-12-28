@@ -232,17 +232,22 @@ class _FirstScreenState extends State<FirstScreen> {
                   UserCredential? cred;
                   try {
                     cred = await signInWithGoogle();
-                    await checkHasAccount(cred.user!.email ?? '')?
-                    Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => NavScreen(),)):
-                    Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                          builder: (context) => SecondScreen(
-                            cred: cred,
-                          ),
-                        ));
+                    await checkHasAccount(cred.user!.email ?? '')
+                        ? Navigator.pushReplacement(
+                            context,
+                            CupertinoPageRoute(
+                              builder: (context) => NavScreen(),
+                            ))
+                        : Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                              builder: (context) => SecondScreen(
+                                cred: cred,
+                              ),
+                            ));
                   } catch (e) {
                     showSnack(context, 'Failed: ${e.toString()}');
+                    debugPrint(e.toString());
                   }
                 },
                 child: Container(

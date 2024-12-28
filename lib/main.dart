@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:nmax/backend/tests.dart';
 import 'package:nmax/firebase_options.dart';
 import 'package:nmax/screens/auth/first_screen.dart';
@@ -37,6 +36,8 @@ class MyApp extends StatelessWidget {
         appBarTheme: AppBarTheme(
           backgroundColor: AppColors.bg,
           titleTextStyle: AppTypography.ha,
+          foregroundColor: AppColors.fg,
+          // centerTitle: true,
         ),
         cardTheme: CardTheme(
             shape: RoundedRectangleBorder(
@@ -137,7 +138,7 @@ class _NavScreenState extends State<NavScreen> {
             ),
             GButton(
               backgroundColor: Colors.blueAccent,
-              icon: LineIcons.user,
+              icon: CupertinoIcons.person,
               text: 'Profile',
             )
           ],

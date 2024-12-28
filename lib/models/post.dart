@@ -26,8 +26,8 @@ class PostModel {
       this.comments,
       this.tags});
 
-  PostModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+  PostModel.fromJson(String id, Map<String, dynamic> json) {
+    id = id;
     url = json['url'];
     thumb = json['thumb'];
     user = json['user'];
