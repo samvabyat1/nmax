@@ -96,72 +96,101 @@ class _PostUploadScreenState extends State<PostUploadScreen> {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(15),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [],
-            ),
-            AspectRatio(
-              aspectRatio: 3 / 4,
-              child: Card(
-                clipBehavior: Clip.antiAlias,
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Image.memory(
-                      widget.bytes!,
-                      fit: BoxFit.cover,
-                    ),
-                    MatrixGD(
-                      child: Text(
-                        textAlign: TextAlign.center,
-                        _textController.text.trim(),
-                        style: GoogleFonts.getFont(
-                          fs[fsi],
-                          color: cl,
-                          fontWeight: fw,
-                          fontSize: sz[szi],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              space(AppSizing.getHeight(context) * 0.15),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [],
+              ),
+              AspectRatio(
+                aspectRatio: 3 / 4,
+                child: WidgetsToImage(
+                  controller: _widgetController,
+                  child: Card(
+                    clipBehavior: Clip.antiAlias,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Image.memory(
+                          widget.bytes!,
+                          fit: BoxFit.cover,
                         ),
-                      ),
+                        MatrixGD(
+                          child: Text(
+                            textAlign: TextAlign.center,
+                            _textController.text.trim(),
+                            style: GoogleFonts.getFont(
+                              fs[fsi],
+                              color: cl,
+                              fontWeight: fw,
+                              fontSize: sz[szi],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
-            ),
-            Row(
-              children: [
-                IconButton(
-                    onPressed: () {
-                      setState(() {
-                        szi = szi == sz.length - 1 ? 0 : szi + 1;
-                      });
-                    },
-                    icon: Icon(CupertinoIcons.textformat_size)),
-                IconButton(
-                    onPressed: () {
-                      setState(() {
-                        cl = cl == Colors.white ? Colors.black : Colors.white;
-                      });
-                    },
-                    icon: Icon(CupertinoIcons.color_filter)),
-                IconButton(
-                    onPressed: () {
-                      setState(() {
-                        fsi = fsi == fs.length - 1 ? 0 : fsi + 1;
-                      });
-                    },
-                    icon: Icon(CupertinoIcons.text_cursor)),
-                Spacer(),
-                IconButton(
-                  onPressed: () => openTextEditor(),
-                  icon: Icon(CupertinoIcons.textformat),
-                ),
-              ],
-            )
-          ],
+              Row(
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          szi = szi == sz.length - 1 ? 0 : szi + 1;
+                        });
+                      },
+                      icon: Icon(CupertinoIcons.textformat_size)),
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          cl = cl == Colors.white ? Colors.black : Colors.white;
+                        });
+                      },
+                      icon: Icon(CupertinoIcons.color_filter)),
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          fsi = fsi == fs.length - 1 ? 0 : fsi + 1;
+                        });
+                      },
+                      icon: Icon(CupertinoIcons.text_cursor)),
+                  Spacer(),
+                  IconButton(
+                    onPressed: () => openTextEditor(),
+                    icon: Icon(CupertinoIcons.textformat),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton.small(
+        onPressed: () async {
+          showDialog(
+            context: context,
+            builder: (context) => Center(
+              child: SizedBox(
+                width: AppSizing.getWidth(context) * 0.4,
+                height: 1,
+                child: LinearProgressIndicator(),
+              ),
+            ),
+          );
+          // final bytes = await _widgetController.capture();
+
+          try {
+            
+          } catch (e) {
+            
+          }
+
+          Navigator.pop(context);
+        },
+        child: Icon(CupertinoIcons.paperplane_fill),
       ),
     );
   }

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
-import 'package:nmax/backend/profile.dart';
+import 'package:nmax/backend/getting.dart';
 import 'package:nmax/models/post.dart';
 import 'package:nmax/screens/profile_screen.dart';
 import 'package:nmax/utils/styles.dart';

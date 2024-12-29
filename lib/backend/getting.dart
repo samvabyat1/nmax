@@ -11,6 +11,10 @@ Stream<QuerySnapshot<Map<String, dynamic>>> allPostsStream() {
   return firestore.collection('posts').snapshots();
 }
 
+Stream<QuerySnapshot<Map<String, dynamic>>> allAsksStream() {
+  return firestore.collection('ask').snapshots();
+}
+
 Future<Color> getImagePalette(String url) async {
   final PaletteGenerator paletteGenerator =
       await PaletteGenerator.fromImageProvider(NetworkImage(url));
@@ -47,4 +51,15 @@ Future<List<PostModel>> getUserPosts(String username) async {
         (e) => PostModel.fromJson(e.id, e.data()),
       )
       .toList();
+}
+
+Future<String> getUsernameFromEmail() async {
+  var email = FirebaseAuth.instance.currentUser!.email;
+  var data = await firestore
+      .collection('users')
+      .where('email', isEqualTo: email)
+      .limit(1)
+      .get();
+
+  return data.docs.first.id;
 }

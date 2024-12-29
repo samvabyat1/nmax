@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nmax/backend/profile.dart';
+import 'package:nmax/backend/getting.dart';
 import 'package:nmax/models/user.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 

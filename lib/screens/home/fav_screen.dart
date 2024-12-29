@@ -70,10 +70,13 @@ class FavScreen extends StatelessWidget {
                                   showDialog(
                                     context: context,
                                     builder: (context) => Center(
-                                        child: Text(
-                                      'Preparing fav...',
-                                      style: AppTypography.body,
-                                    )),
+                                      child: SizedBox(
+                                        width:
+                                            AppSizing.getWidth(context) * 0.4,
+                                        height: 1,
+                                        child: LinearProgressIndicator(),
+                                      ),
+                                    ),
                                   );
                                   final bytes = await _controller.capture();
 
