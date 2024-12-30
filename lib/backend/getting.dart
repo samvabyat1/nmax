@@ -11,8 +11,18 @@ Stream<QuerySnapshot<Map<String, dynamic>>> allPostsStream() {
   return firestore.collection('posts').snapshots();
 }
 
-Stream<QuerySnapshot<Map<String, dynamic>>> allAsksStream() {
-  return firestore.collection('ask').snapshots();
+Stream<QuerySnapshot<Map<String, dynamic>>> allAsksStream(String channel) {
+  if (channel.isNotEmpty)
+    return firestore
+        .collection('ask')
+        .where('tags', arrayContains: channel)
+        .orderBy('created', descending: true)
+        .snapshots();
+  return firestore.collection('ask').orderBy('created', descending: true).snapshots();
+}
+
+Stream<QuerySnapshot<Map<String, dynamic>>> allChannelTagsStream() {
+  return firestore.collection('ask').orderBy('tags').snapshots();
 }
 
 Future<Color> getImagePalette(String url) async {
