@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:nmax/backend/getting.dart';
 import 'package:nmax/backend/tests.dart';
 import 'package:nmax/firebase_options.dart';
 import 'package:nmax/screens/auth/first_screen.dart';
@@ -81,6 +82,8 @@ class _SplashScreenState extends State<SplashScreen> {
 }
 
 class NavScreen extends StatefulWidget {
+  static String user = '';
+
   @override
   _NavScreenState createState() => _NavScreenState();
 }
@@ -103,6 +106,16 @@ class _NavScreenState extends State<NavScreen> {
     DirectScreen(),
     ProfileScreen(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    setUser();
+  }
+
+  setUser() async {
+    NavScreen.user = await getUsernameFromEmail();
+  }
 
   @override
   Widget build(BuildContext context) {

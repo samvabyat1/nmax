@@ -8,7 +8,10 @@ import 'package:palette_generator/palette_generator.dart';
 final firestore = FirebaseFirestore.instance;
 
 Stream<QuerySnapshot<Map<String, dynamic>>> allPostsStream() {
-  return firestore.collection('posts').snapshots();
+  return firestore
+      .collection('posts')
+      .orderBy('created', descending: true)
+      .snapshots();
 }
 
 Stream<QuerySnapshot<Map<String, dynamic>>> allAsksStream(String channel) {
@@ -18,7 +21,10 @@ Stream<QuerySnapshot<Map<String, dynamic>>> allAsksStream(String channel) {
         .where('tags', arrayContains: channel)
         .orderBy('created', descending: true)
         .snapshots();
-  return firestore.collection('ask').orderBy('created', descending: true).snapshots();
+  return firestore
+      .collection('ask')
+      .orderBy('created', descending: true)
+      .snapshots();
 }
 
 Stream<QuerySnapshot<Map<String, dynamic>>> allChannelTagsStream() {
