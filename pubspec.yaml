@@ -26,6 +26,7 @@ dependencies:
   google_sign_in: ^6.2.2
   http: ^1.2.2
   line_icons: ^2.0.3
+  lottie: ^3.2.0
   matrix_gesture_detector_pro: ^1.0.0
   palette_generator: ^0.3.3+5
   path_provider: ^2.1.5
@@ -50,3 +51,4 @@ flutter:
     - assets/wish-list.png
     - assets/ph1.svg
     - assets/ph2.svg
+    - assets/anlike.json

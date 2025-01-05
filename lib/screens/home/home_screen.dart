@@ -22,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: PageView(
         onPageChanged: (value) => setState(() => togbtn = value),
         controller: _controller,
+        physics: NeverScrollableScrollPhysics(),
         children: [
           FeedScreen(),
           FavScreen(),

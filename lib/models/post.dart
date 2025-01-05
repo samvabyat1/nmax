@@ -26,16 +26,16 @@ class PostModel {
       this.comments,
       this.tags});
 
-  PostModel.fromJson(String id, Map<String, dynamic> json) {
-    id = id;
+  PostModel.fromJson(String postid, Map<String, dynamic> json) {
+    id = postid;
     url = json['url'];
     thumb = json['thumb'];
     user = json['user'];
     userpic = json['userpic'];
-    created=(json['created'] as Timestamp).toDate();
+    created = (json['created'] as Timestamp).toDate();
     caption = json['caption'];
     likes = json['likes'];
-    likedby = json['likedby'].cast<String>();
+    likedby = List<String>.from(json['likedBy'] ?? []);
     comments = json['comments'];
     tags = json['tags'].cast<String>();
   }

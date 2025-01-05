@@ -47,3 +47,40 @@ List<String> extractTags(String description) {
       .map((match) => match.group(0)!)
       .toList();
 }
+
+Future<void> toggleLike(String post) async {
+  String userId = await getUsernameFromEmail();
+  try {
+    final postRef = firestore.collection('posts').doc(post);
+
+    final postSnapshot = await postRef.get();
+    if (!postSnapshot.exists) {
+      throw Exception('Post does not exist');
+    }
+    final currentLikes = postSnapshot.get('likes') ?? 0;
+    final likedBy = List<String>.from(postSnapshot.data()?['likedBy'] ?? []);
+
+    if (likedBy.contains(userId)) {
+      // Only decrement if likes > 0
+      if (currentLikes > 0) {
+        postRef.update({
+          'likes': currentLikes - 1,
+          'likedBy': FieldValue.arrayRemove([userId]),
+        });
+      } else {
+        // Just remove from likedBy without decrementing
+        postRef.update({
+          'likedBy': FieldValue.arrayRemove([userId]),
+        });
+      }
+    } else {
+      postRef.update({
+        'likes': currentLikes + 1,
+        'likedBy': FieldValue.arrayUnion([userId]),
+      });
+    }
+    await firestore.runTransaction((transaction) async {});
+  } catch (e) {
+    print(e.toString());
+  }
+}
