@@ -51,99 +51,115 @@ class _ChatScreenState extends State<ChatScreen> {
               colorBlendMode: BlendMode.softLight,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 100),
-            child: ClipRRect(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: SweepGradient(
-                    colors: [Color(0xffeb5757), Color(0xff000000)],
-                    stops: [0, 1],
-                    center: Alignment.bottomRight,
-                  ),
-                ),
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: StreamBuilder(
-                          stream: messagesData,
-                          builder: (context, snapshot) {
-                            if (snapshot.connectionState ==
-                                    ConnectionState.waiting ||
-                                snapshot.hasError ||
-                                snapshot.hasData == false)
-                              return Center(
-                                child: SizedBox(
-                                  width: AppSizing.getWidth(context) * 0.4,
-                                  height: 1,
-                                  child: LinearProgressIndicator(
-                                    color: Colors.redAccent,
+          Center(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: 1200),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 100),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: SweepGradient(
+                        colors: [Color(0xffeb5757), Color(0xff000000)],
+                        stops: [0, 1],
+                        center: Alignment.bottomRight,
+                      ),
+                    ),
+                    child: Center(
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(maxWidth: 600),
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: StreamBuilder(
+                                  stream: messagesData,
+                                  builder: (context, snapshot) {
+                                    if (snapshot.connectionState ==
+                                            ConnectionState.waiting ||
+                                        snapshot.hasError ||
+                                        snapshot.hasData == false)
+                                      return Center(
+                                        child: SizedBox(
+                                          width:
+                                              AppSizing.getWidth(context) * 0.4,
+                                          height: 1,
+                                          child: LinearProgressIndicator(
+                                            color: Colors.redAccent,
+                                          ),
+                                        ),
+                                      );
+
+                                    final data = snapshot.data?.docs;
+                                    List<ChatMessageModel> list = data
+                                            ?.map((e) =>
+                                                ChatMessageModel.fromJson(
+                                                    e.data()))
+                                            .toList() ??
+                                        [];
+
+                                    if (list.isEmpty)
+                                      return Center(
+                                          child: SizedBox(
+                                        width:
+                                            AppSizing.getWidth(context) * 0.6,
+                                        child: SvgPicture.asset(
+                                          'assets/ph1.svg',
+                                        ),
+                                      ));
+
+                                    return ListView.builder(
+                                      itemCount: list.length,
+                                      reverse: true,
+                                      itemBuilder: (context, index) =>
+                                          normalTextTile(list[index], context),
+                                    );
+                                  }),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              child: Container(
+                                width: AppSizing.getWidth(context) * 0.9,
+                                decoration: BoxDecoration(
+                                  color: Colors.redAccent,
+                                  borderRadius: BorderRadius.circular(50),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 25),
+                                  child: TextField(
+                                    controller: textContronller,
+                                    style: AppTypography.body,
+                                    textCapitalization:
+                                        TextCapitalization.sentences,
+                                    cursorColor: Colors.white,
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: 'Say hiii...',
+                                      hintStyle: AppTypography.sub,
+                                    ),
+                                    onSubmitted: (value) {
+                                      if (value.isNotEmpty) {
+                                        try {
+                                          sendMessage(
+                                              widget.user.username, value, '');
+                                          setState(() {
+                                            textContronller.clear();
+                                          });
+                                        } catch (e) {
+                                          showSnack(context, 'Error $e');
+                                        }
+                                      }
+                                    },
                                   ),
                                 ),
-                              );
-
-                            final data = snapshot.data?.docs;
-                            List<ChatMessageModel> list = data
-                                    ?.map((e) =>
-                                        ChatMessageModel.fromJson(e.data()))
-                                    .toList() ??
-                                [];
-
-                            if (list.isEmpty)
-                              return Center(
-                                  child: SizedBox(
-                                width: AppSizing.getWidth(context) * 0.6,
-                                child: SvgPicture.asset(
-                                  'assets/ph1.svg',
-                                ),
-                              ));
-
-                            return ListView.builder(
-                              itemCount: list.length,
-                              reverse: true,
-                              itemBuilder: (context, index) =>
-                                  normalTextTile(list[index], context),
-                            );
-                          }),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Container(
-                        width: AppSizing.getWidth(context) * 0.9,
-                        decoration: BoxDecoration(
-                          color: Colors.redAccent,
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 25),
-                          child: TextField(
-                            controller: textContronller,
-                            style: AppTypography.body,
-                            textCapitalization: TextCapitalization.sentences,
-                            cursorColor: Colors.white,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'Say hiii...',
-                              hintStyle: AppTypography.sub,
+                              ),
                             ),
-                            onSubmitted: (value) {
-                              if (value.isNotEmpty) {
-                                try {
-                                  sendMessage(widget.user.username, value, '');
-                                  setState(() {
-                                    textContronller.clear();
-                                  });
-                                } catch (e) {
-                                  showSnack(context, 'Error $e');
-                                }
-                              }
-                            },
-                          ),
+                          ],
                         ),
                       ),
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),

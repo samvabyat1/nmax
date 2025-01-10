@@ -35,108 +35,113 @@ class _ChannelFeedState extends State<ChannelFeed> {
           'Channels',
         ),
       ),
-      body: StreamBuilder(
-          stream: allasks,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting ||
-                snapshot.hasError ||
-                snapshot.hasData == false)
-              return Center(
-                child: SizedBox(
-                  width: AppSizing.getWidth(context) * 0.4,
-                  height: 1,
-                  child: LinearProgressIndicator(
-                    color: Colors.deepOrange,
-                  ),
-                ),
-              );
-      
-            if (snapshot.data!.size == 0)
-              return Center(
-                child: SizedBox(
-                  width: AppSizing.getWidth(context) * 0.4,
-                  height: 1,
-                  child: LinearProgressIndicator(
-                    color: Colors.deepOrange,
-                  ),
-                ),
-              );
-            var asks = snapshot.data!.docs
-                .map(
-                  (e) => PostModel.fromJson(e.id, e.data()),
-                )
-                .toList();
-            return ListView.builder(
-              itemCount: snapshot.data!.size,
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-              itemBuilder: (context, index) => Padding(
-                padding: const EdgeInsets.only(bottom: 25),
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.white,
+      body: Center(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: 600),
+          child: StreamBuilder(
+              stream: allasks,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting ||
+                    snapshot.hasError ||
+                    snapshot.hasData == false)
+                  return Center(
+                    child: SizedBox(
+                      width: AppSizing.getWidth(context) * 0.4,
+                      height: 1,
+                      child: LinearProgressIndicator(
+                        color: Colors.deepOrange,
+                      ),
                     ),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          asks[index].caption.toString(),
-                          style: AppTypography.body,
+                  );
+
+                if (snapshot.data!.size == 0)
+                  return Center(
+                    child: SizedBox(
+                      width: AppSizing.getWidth(context) * 0.4,
+                      height: 1,
+                      child: LinearProgressIndicator(
+                        color: Colors.deepOrange,
+                      ),
+                    ),
+                  );
+                var asks = snapshot.data!.docs
+                    .map(
+                      (e) => PostModel.fromJson(e.id, e.data()),
+                    )
+                    .toList();
+                return ListView.builder(
+                  itemCount: snapshot.data!.size,
+                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                  itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.only(bottom: 25),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.white,
                         ),
-                        space(10),
-                        Wrap(
-                          spacing: 10,
-                          children: asks[index]
-                              .tags!
-                              .map(
-                                (e) => Container(
-                                  child: Text(
-                                    e,
-                                    style: AppTypography.sub,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              asks[index].caption.toString(),
+                              style: AppTypography.body,
+                            ),
+                            space(10),
+                            Wrap(
+                              spacing: 10,
+                              children: asks[index]
+                                  .tags!
+                                  .map(
+                                    (e) => Container(
+                                      child: Text(
+                                        e,
+                                        style: AppTypography.sub,
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
+                            ),
+                            Row(
+                              children: [
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(CupertinoIcons.heart)),
+                                Text(
+                                  asks[index].likes.toString(),
+                                  style: AppTypography.body,
+                                ),
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(CupertinoIcons.chat_bubble)),
+                                Text(
+                                  asks[index].comments.toString(),
+                                  style: AppTypography.body,
+                                ),
+                                Spacer(),
+                                Text(
+                                  asks[index].user.toString(),
+                                  style: GoogleFonts.oswald(
+                                    color: Colors.deepOrange,
                                   ),
                                 ),
-                              )
-                              .toList(),
-                        ),
-                        Row(
-                          children: [
-                            IconButton(
-                                onPressed: () {},
-                                icon: Icon(CupertinoIcons.heart)),
-                            Text(
-                              asks[index].likes.toString(),
-                              style: AppTypography.body,
-                            ),
-                            IconButton(
-                                onPressed: () {},
-                                icon: Icon(CupertinoIcons.chat_bubble)),
-                            Text(
-                              asks[index].comments.toString(),
-                              style: AppTypography.body,
-                            ),
-                            Spacer(),
-                            Text(
-                              asks[index].user.toString(),
-                              style: GoogleFonts.oswald(
-                                color: Colors.deepOrange,
-                              ),
-                            ),
-                            IconButton(
-                                onPressed: () {},
-                                icon: Icon(CupertinoIcons.paperplane)),
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(CupertinoIcons.paperplane)),
+                              ],
+                            )
                           ],
-                        )
-                      ],
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-            );
-          }),
+                );
+              }),
+        ),
+      ),
       persistentFooterButtons: [
         StreamBuilder(
           stream: alltags,

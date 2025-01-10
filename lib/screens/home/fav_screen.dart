@@ -43,64 +43,68 @@ class FavScreen extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: Container(
-                  // height: AppSizing.getHeight(context) * 0.45,
-                  width: double.maxFinite,
-                  child: AspectRatio(
-                    aspectRatio: 3 / 4,
-                    child: CardSwiper(
-                      padding: EdgeInsets.all(5),
-                      cardsCount: 20,
-                      cardBuilder: (context, index, horizontalOffsetPercentage,
-                          verticalOffsetPercentage) {
-                        var _controller = WidgetsToImageController();
+              Expanded(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Container(
+                      child: AspectRatio(
+                        aspectRatio: 3 / 4,
+                        child: CardSwiper(
+                          padding: EdgeInsets.all(5),
+                          cardsCount: 20,
+                          cardBuilder: (context,
+                              index,
+                              horizontalOffsetPercentage,
+                              verticalOffsetPercentage) {
+                            var _controller = WidgetsToImageController();
 
-                        return WidgetsToImage(
-                          controller: _controller,
-                          child: Card(
-                            color: Colors.pink[300],
-                            clipBehavior: Clip.antiAlias,
-                            child: SizedBox(
-                              height: double.maxFinite,
-                              width: double.maxFinite,
-                              child: GestureDetector(
-                                onTap: () async {
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) => Center(
-                                      child: SizedBox(
-                                        width:
-                                            AppSizing.getWidth(context) * 0.4,
-                                        height: 1,
-                                        child: LinearProgressIndicator(),
+                            return WidgetsToImage(
+                              controller: _controller,
+                              child: Card(
+                                color: Colors.pink[300],
+                                clipBehavior: Clip.antiAlias,
+                                child: SizedBox(
+                                  height: double.maxFinite,
+                                  width: double.maxFinite,
+                                  child: GestureDetector(
+                                    onTap: () async {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) => Center(
+                                          child: SizedBox(
+                                            width: AppSizing.getWidth(context) *
+                                                0.4,
+                                            height: 1,
+                                            child: LinearProgressIndicator(),
+                                          ),
+                                        ),
+                                      );
+                                      final bytes = await _controller.capture();
+
+                                      Navigator.pop(context);
+
+                                      Navigator.push(
+                                        context,
+                                        CupertinoPageRoute(
+                                          builder: (context) =>
+                                              PostUploadScreen(bytes: bytes),
+                                        ),
+                                      );
+                                    },
+                                    child: Image(
+                                      fit: BoxFit.cover,
+                                      image: NetworkImage(
+                                        "https://picsum.photos/540/720?random=$index",
                                       ),
                                     ),
-                                  );
-                                  final bytes = await _controller.capture();
-
-                                  Navigator.pop(context);
-
-                                  Navigator.push(
-                                    context,
-                                    CupertinoPageRoute(
-                                      builder: (context) =>
-                                          PostUploadScreen(bytes: bytes),
-                                    ),
-                                  );
-                                },
-                                child: Image(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                    "https://picsum.photos/540/720?random=$index",
                                   ),
                                 ),
                               ),
-                            ),
-                          ),
-                        );
-                      },
+                            );
+                          },
+                        ),
+                      ),
                     ),
                   ),
                 ),

@@ -50,40 +50,43 @@ class _NavScreenState extends State<NavScreen> {
       return Scaffold(
         body: Center(
           child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 1000),
+            constraints: BoxConstraints(maxWidth: 1200),
             child: Row(
               children: [
-                RotatedBox(
-                  quarterTurns: -1,
-                  child: GNav(
-                    backgroundColor: Colors.transparent,
-                    activeColor: Colors.white,
-                    color: Colors.white70,
-                    gap: 5,
-                    padding: EdgeInsets.all(10),
-                    onTabChange: _onItemTapped,
-                    tabs: [
-                      GButton(
-                        backgroundColor: Colors.deepPurple.shade800,
-                        icon: CupertinoIcons.flame,
-                        text: 'Feed',
-                      ),
-                      GButton(
-                        backgroundColor: Colors.deepOrange,
-                        icon: CupertinoIcons.cloud,
-                        text: 'Channels',
-                      ),
-                      GButton(
-                        backgroundColor: Colors.pinkAccent,
-                        icon: CupertinoIcons.paperplane,
-                        text: 'Direct',
-                      ),
-                      GButton(
-                        backgroundColor: Colors.blueAccent,
-                        icon: CupertinoIcons.person,
-                        text: 'Profile',
-                      )
-                    ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: RotatedBox(
+                    quarterTurns: -1,
+                    child: GNav(
+                      backgroundColor: Colors.transparent,
+                      activeColor: Colors.white,
+                      color: Colors.white70,
+                      gap: 5,
+                      padding: EdgeInsets.all(10),
+                      onTabChange: _onItemTapped,
+                      tabs: [
+                        GButton(
+                          backgroundColor: Colors.deepPurple.shade800,
+                          icon: CupertinoIcons.flame,
+                          text: 'Feed',
+                        ),
+                        GButton(
+                          backgroundColor: Colors.deepOrange,
+                          icon: CupertinoIcons.cloud,
+                          text: 'Channels',
+                        ),
+                        GButton(
+                          backgroundColor: Colors.pinkAccent,
+                          icon: CupertinoIcons.paperplane,
+                          text: 'Direct',
+                        ),
+                        GButton(
+                          backgroundColor: Colors.blueAccent,
+                          icon: CupertinoIcons.person,
+                          text: 'Profile',
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 space(15),
