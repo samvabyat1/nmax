@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nmax/backend/chating.dart';
-import 'package:nmax/main.dart';
+import 'package:nmax/navscreen.dart';
 import 'package:nmax/models/chat.dart';
 import 'package:nmax/utils/styles.dart';
 

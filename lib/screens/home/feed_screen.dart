@@ -5,8 +5,8 @@ import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:lottie/lottie.dart';
 import 'package:nmax/backend/getting.dart';
 import 'package:nmax/backend/posting.dart';
-import 'package:nmax/main.dart';
 import 'package:nmax/models/post.dart';
+import 'package:nmax/navscreen.dart';
 import 'package:nmax/screens/profile_screen.dart';
 import 'package:nmax/utils/styles.dart';
 

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:nmax/main.dart';
+import 'package:nmax/navscreen.dart';
 import 'package:nmax/models/chat.dart';
 
 final firestore = FirebaseFirestore.instance;

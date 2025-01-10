@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nmax/backend/authentication.dart';
-import 'package:nmax/main.dart';
+import 'package:nmax/navscreen.dart';
 import 'package:nmax/screens/auth/second_screen.dart';
 import 'package:nmax/utils/outputs.dart';
 import 'package:nmax/utils/styles.dart';

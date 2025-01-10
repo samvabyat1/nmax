@@ -6,7 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nmax/backend/chating.dart';
 import 'package:nmax/backend/getting.dart';
-import 'package:nmax/main.dart';
+import 'package:nmax/navscreen.dart';
 import 'package:nmax/models/user.dart';
 import 'package:nmax/screens/direct/chat_screen.dart';
 import 'package:nmax/screens/direct/gemini.dart';

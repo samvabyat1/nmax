@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:nmax/backend/authentication.dart';
-import 'package:nmax/main.dart';
+import 'package:nmax/navscreen.dart';
 import 'package:nmax/utils/outputs.dart';
 import 'package:nmax/utils/styles.dart';
 
