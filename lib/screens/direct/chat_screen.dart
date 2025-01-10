@@ -31,6 +31,8 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool isdesk = AppSizing.getWidth(context) > 600;
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -44,20 +46,24 @@ class _ChatScreenState extends State<ChatScreen> {
         children: [
           Positioned(
             top: 0,
-            child: Image.network(
-              'https://picsum.photos/720/540',
-              fit: BoxFit.fitWidth,
-              color: Colors.redAccent,
-              colorBlendMode: BlendMode.softLight,
+            child: Visibility(
+              visible: !isdesk,
+              child: Image.network(
+                'https://picsum.photos/720/540',
+                fit: BoxFit.fitWidth,
+                color: Colors.redAccent,
+                colorBlendMode: BlendMode.softLight,
+              ),
             ),
           ),
           Center(
             child: ConstrainedBox(
               constraints: BoxConstraints(maxWidth: 1200),
               child: Padding(
-                padding: const EdgeInsets.only(top: 100),
+                padding: EdgeInsets.only(top: isdesk ? 0 : 100),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+                  borderRadius: BorderRadius.vertical(
+                      top: isdesk ? Radius.zero : Radius.circular(30)),
                   child: Container(
                     decoration: BoxDecoration(
                       gradient: SweepGradient(

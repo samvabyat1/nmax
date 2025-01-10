@@ -47,10 +47,23 @@ class DirectScreen extends StatelessWidget {
                     child: InkWell(
                       splashColor: Colors.pinkAccent,
                       borderRadius: BorderRadius.circular(20),
-                      onTap: () => showModalBottomSheet(
-                        context: context,
-                        builder: (context) => Gemini(),
-                      ),
+                      onTap: () => AppSizing.getWidth(context) > 600
+                          ? showDialog(
+                              context: context,
+                              builder: (context) => Dialog(
+                                clipBehavior: Clip.antiAlias,
+                                child: ConstrainedBox(
+                                    constraints: BoxConstraints(
+                                        maxWidth: 600,
+                                        maxHeight:
+                                            AppSizing.getHeight(context) * 0.8),
+                                    child: Gemini()),
+                              ),
+                            )
+                          : showModalBottomSheet(
+                              context: context,
+                              builder: (context) => Gemini(),
+                            ),
                       child: AspectRatio(
                         aspectRatio: 3 / 2,
                         child: Container(

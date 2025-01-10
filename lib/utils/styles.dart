@@ -62,3 +62,13 @@ Widget space(double space) => SizedBox(
       height: space,
       width: space,
     );
+
+
+Widget desktopph() => Container(
+    decoration: BoxDecoration(
+      image: DecorationImage(
+        fit: BoxFit.cover,
+        image: AssetImage('assets/icon_bg.png'),
+      ),
+    ),
+  );

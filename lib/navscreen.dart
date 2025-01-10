@@ -21,14 +21,7 @@ class _NavScreenState extends State<NavScreen> {
   final _pageController = PageController();
   int i = 0;
 
-  Widget desktopaltpage = Container(
-    decoration: BoxDecoration(
-      image: DecorationImage(
-        fit: BoxFit.cover,
-        image: AssetImage('assets/icon_bg.png'),
-      ),
-    ),
-  );
+  Widget desktopaltpage = desktopph();
 
   void _onItemTapped(int index) {
     _pageController.animateToPage(index,
@@ -98,7 +91,13 @@ class _NavScreenState extends State<NavScreen> {
                       },
                       icon: Icon(CupertinoIcons.person)),
                   Spacer(),
-                  Icon(CupertinoIcons.desktopcomputer),
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          desktopaltpage = desktopph();
+                        });
+                      },
+                      icon: Icon(CupertinoIcons.desktopcomputer)),
                   space(40),
                 ],
               ),
