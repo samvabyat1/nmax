@@ -4,8 +4,10 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:nmax/backend/getting.dart';
 import 'package:nmax/screens/channels/channels_screen.dart';
 import 'package:nmax/screens/direct/direct_screen.dart';
+import 'package:nmax/screens/home/fav_screen.dart';
+import 'package:nmax/screens/home/feed_screen.dart';
 import 'package:nmax/screens/home/home_screen.dart';
-import 'package:nmax/screens/profile_screen.dart';
+import 'package:nmax/screens/profile/profile_screen.dart';
 import 'package:nmax/utils/styles.dart';
 
 class NavScreen extends StatefulWidget {
@@ -18,6 +20,15 @@ class NavScreen extends StatefulWidget {
 class _NavScreenState extends State<NavScreen> {
   final _pageController = PageController();
   int i = 0;
+
+  Widget desktopaltpage = Container(
+    decoration: BoxDecoration(
+      image: DecorationImage(
+        fit: BoxFit.cover,
+        image: AssetImage('assets/icon_bg.png'),
+      ),
+    ),
+  );
 
   void _onItemTapped(int index) {
     _pageController.animateToPage(index,
@@ -46,60 +57,59 @@ class _NavScreenState extends State<NavScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (AppSizing.getWidth(context) > 600)
+    if (AppSizing.getWidth(context) > 1000)
       return Scaffold(
-        body: Center(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 1200),
-            child: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
-                  child: RotatedBox(
-                    quarterTurns: -1,
-                    child: GNav(
-                      backgroundColor: Colors.transparent,
-                      activeColor: Colors.white,
-                      color: Colors.white70,
-                      gap: 5,
-                      padding: EdgeInsets.all(10),
-                      onTabChange: _onItemTapped,
-                      tabs: [
-                        GButton(
-                          backgroundColor: Colors.deepPurple.shade800,
-                          icon: CupertinoIcons.flame,
-                          text: 'Feed',
-                        ),
-                        GButton(
-                          backgroundColor: Colors.deepOrange,
-                          icon: CupertinoIcons.cloud,
-                          text: 'Channels',
-                        ),
-                        GButton(
-                          backgroundColor: Colors.pinkAccent,
-                          icon: CupertinoIcons.paperplane,
-                          text: 'Direct',
-                        ),
-                        GButton(
-                          backgroundColor: Colors.blueAccent,
-                          icon: CupertinoIcons.person,
-                          text: 'Profile',
-                        )
-                      ],
-                    ),
-                  ),
+        body: Row(
+          children: [
+            Container(
+              width: 70,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage('assets/icon_bg.png'),
                 ),
-                space(15),
-                Expanded(
-                  child: PageView(
-                    physics: NeverScrollableScrollPhysics(),
-                    children: _pages,
-                    controller: _pageController,
-                  ),
-                ),
-              ],
+              ),
+              child: Column(
+                children: [
+                  space(40),
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          desktopaltpage = ChannelsScreen();
+                        });
+                      },
+                      icon: Icon(CupertinoIcons.cloud)),
+                  space(20),
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          desktopaltpage = DirectScreen();
+                        });
+                      },
+                      icon: Icon(CupertinoIcons.paperplane)),
+                  space(20),
+                  IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                              builder: (context) => ProfileScreen(),
+                            ));
+                      },
+                      icon: Icon(CupertinoIcons.person)),
+                  Spacer(),
+                  Icon(CupertinoIcons.desktopcomputer),
+                  space(40),
+                ],
+              ),
             ),
-          ),
+            Expanded(child: FeedScreen()),
+            Expanded(child: FavScreen()),
+            Expanded(child: desktopaltpage),
+            // ChannelsScreen(),
+            // DirectScreen(),
+            // ProfileScreen(),
+          ],
         ),
       );
 

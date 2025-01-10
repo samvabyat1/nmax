@@ -1,7 +1,5 @@
-// ignore_for_file: must_be_immutable
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,53 +11,8 @@ import 'package:nmax/screens/direct/chat_screen.dart';
 import 'package:nmax/utils/styles.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-class ProfileScreen extends StatefulWidget {
-  final String username;
-  ProfileScreen({
-    super.key,
-    this.username = '',
-  });
-
-  @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
-}
-
-class _ProfileScreenState extends State<ProfileScreen> {
-  late UserModel? user;
-  final authuser = FirebaseAuth.instance.currentUser;
-  bool isOwnProfile = false;
-
-  Color cardcolor = Colors.grey;
-
-  void getCardColor() async {
-    cardcolor = await getImagePalette(user!.picture == null
-        ? authuser!.photoURL.toString()
-        : user!.picture.toString());
-    setState(() {});
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    isOwnProfile = widget.username == '';
-    // getCardColor();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: getUser(widget.username),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting ||
-              snapshot.hasError ||
-              snapshot.hasData == false) return Scaffold();
-
-          user = snapshot.data;
-
-          // getCardColor();
-
-          return Scaffold(
+Widget profileMobile(UserModel? user, bool isOwnProfile, BuildContext context){
+  return Scaffold(
             appBar: AppBar(
               title: Text(
                 'Profile',
@@ -98,7 +51,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                 'assets/icon.png',
                                               )
                                             : CachedNetworkImageProvider(
-                                                user!.picture.toString()),
+                                                user.picture.toString()),
                                         child: Baseline(
                                           baseline: 200,
                                           baselineType: TextBaseline.alphabetic,
@@ -129,7 +82,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      user!.username
+                                                      user.username
                                                           .toUpperCase(),
                                                       style: GoogleFonts.oswald(
                                                         fontSize: 18,
@@ -220,7 +173,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         angle: 0.1,
                                         child: QrImageView(
                                           data:
-                                              'https://nmaxapp.web.app/${user!.username}',
+                                              'https://nmaxapp.web.app/${user.username}',
                                           size: 200,
                                           embeddedImage:
                                               AssetImage('assets/icon.png'),
@@ -245,7 +198,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               ),
                                             ),
                                             Text(
-                                              user!.username.toUpperCase(),
+                                              user.username.toUpperCase(),
                                               style: GoogleFonts.oswald(
                                                 fontSize: 18,
                                                 color: Colors.white,
@@ -270,7 +223,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 context,
                                 CupertinoPageRoute(
                                   builder: (context) => ChatScreen(
-                                    user: user!,
+                                    user: user,
                                   ),
                                 )),
                             trailing: Icon(
@@ -278,7 +231,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               // color: AppColors.fg,
                             ),
                             title: Text(
-                              'Message ${user!.username == NavScreen.user ? 'Yourself' : user!.username}',
+                              'Message ${user.username == NavScreen.user ? 'Yourself' : user.username}',
                               style: GoogleFonts.montserrat(
                                 fontWeight: FontWeight.w500,
                                 // color: AppColors.fg,
@@ -294,7 +247,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
                 FutureBuilder(
-                    future: getUserPosts(user!.username),
+                    future: getUserPosts(user.username),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting ||
                           snapshot.hasError ||
@@ -346,6 +299,4 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
           );
-        });
-  }
 }
