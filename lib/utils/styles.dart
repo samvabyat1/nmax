@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTypography {
@@ -63,12 +64,24 @@ Widget space(double space) => SizedBox(
       width: space,
     );
 
-
 Widget desktopph() => Container(
-    decoration: BoxDecoration(
-      image: DecorationImage(
-        fit: BoxFit.cover,
-        image: AssetImage('assets/icon_bg.png'),
+      // width: 100,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SvgPicture.asset(
+            'assets/ph3.svg',
+            height: 100,
+          ),
+          Text(
+            'Your Devices are on Sync',
+            style: AppTypography.sub,
+          ),
+          space(10),
+          Text(
+            'Use a mobile device for best experience',
+            style: AppTypography.body,
+          )
+        ],
       ),
-    ),
-  );
+    );

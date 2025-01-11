@@ -3,12 +3,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nmax/backend/chating.dart';
 import 'package:nmax/backend/getting.dart';
 import 'package:nmax/navscreen.dart';
 import 'package:nmax/models/user.dart';
-import 'package:nmax/screens/direct/chat_screen.dart';
 import 'package:nmax/screens/direct/gemini.dart';
 import 'package:nmax/utils/styles.dart';
 
@@ -158,13 +158,7 @@ class DirectScreen extends StatelessWidget {
                                     ? Colors.pinkAccent.withOpacity(0.5)
                                     : Colors.pinkAccent.withOpacity(0.2),
                                 child: ListTile(
-                                  onTap: () => Navigator.push(
-                                      context,
-                                      CupertinoPageRoute(
-                                        builder: (context) => ChatScreen(
-                                          user: user,
-                                        ),
-                                      )),
+                                  onTap: () => context.push('/m/${user.username}'),
                                   leading: ClipOval(
                                     child: Image.asset(
                                       'assets/icon.png',

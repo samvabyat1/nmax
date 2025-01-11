@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:nmax/backend/getting.dart';
 import 'package:nmax/screens/channels/channels_screen.dart';
@@ -83,11 +84,7 @@ class _NavScreenState extends State<NavScreen> {
                   space(20),
                   IconButton(
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            CupertinoPageRoute(
-                              builder: (context) => ProfileScreen(),
-                            ));
+                        context.push('/i');
                       },
                       icon: Icon(CupertinoIcons.person)),
                   Spacer(),

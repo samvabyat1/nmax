@@ -3,9 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nmax/backend/authentication.dart';
-import 'package:nmax/navscreen.dart';
 import 'package:nmax/screens/auth/second_screen.dart';
 import 'package:nmax/utils/outputs.dart';
 import 'package:nmax/utils/styles.dart';
@@ -109,11 +109,7 @@ class _FirstScreenState extends State<FirstScreen> {
                       try {
                         cred = await signInWithGoogle();
                         await checkHasAccount(cred.user!.email ?? '')
-                            ? Navigator.pushReplacement(
-                                context,
-                                CupertinoPageRoute(
-                                  builder: (context) => NavScreen(),
-                                ))
+                            ? context.go('/')
                             : Navigator.push(
                                 context,
                                 CupertinoPageRoute(
@@ -390,11 +386,7 @@ class _FirstScreenState extends State<FirstScreen> {
                   try {
                     cred = await signInWithGoogle();
                     await checkHasAccount(cred.user!.email ?? '')
-                        ? Navigator.pushReplacement(
-                            context,
-                            CupertinoPageRoute(
-                              builder: (context) => NavScreen(),
-                            ))
+                        ? context.go('/')
                         : Navigator.push(
                             context,
                             CupertinoPageRoute(

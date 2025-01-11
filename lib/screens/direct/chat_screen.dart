@@ -4,13 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nmax/backend/chating.dart';
 import 'package:nmax/models/chat.dart';
-import 'package:nmax/models/user.dart';
 import 'package:nmax/screens/direct/chat_widgets.dart';
 import 'package:nmax/utils/outputs.dart';
 import 'package:nmax/utils/styles.dart';
 
 class ChatScreen extends StatefulWidget {
-  final UserModel user;
+  final String user;
   const ChatScreen({super.key, required this.user});
 
   @override
@@ -25,7 +24,7 @@ class _ChatScreenState extends State<ChatScreen> {
   void initState() {
     super.initState();
 
-    messagesData = getAllMessagesStream(widget.user.username);
+    messagesData = getAllMessagesStream(widget.user);
     setState(() {});
   }
 
@@ -38,7 +37,7 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         centerTitle: true,
-        title: Text(widget.user.username),
+        title: Text(widget.user),
       ),
       body: Stack(
         alignment: Alignment.topCenter,
@@ -148,7 +147,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                       if (value.isNotEmpty) {
                                         try {
                                           sendMessage(
-                                              widget.user.username, value, '');
+                                              widget.user, value, '');
                                           setState(() {
                                             textContronller.clear();
                                           });

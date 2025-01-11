@@ -20,6 +20,7 @@ dependencies:
   flutter_animate: ^4.5.2
   flutter_card_swiper: ^7.0.2
   flutter_svg: ^2.0.16
+  go_router: ^14.6.3
   google_fonts: ^6.2.1
   google_generative_ai: ^0.4.6
   google_nav_bar: ^5.0.7
@@ -51,4 +52,5 @@ flutter:
     - assets/wish-list.png
     - assets/ph1.svg
     - assets/ph2.svg
+    - assets/ph3.svg
     - assets/anlike.json

@@ -3,11 +3,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nmax/backend/getting.dart';
 import 'package:nmax/models/user.dart';
 import 'package:nmax/navscreen.dart';
-import 'package:nmax/screens/direct/chat_screen.dart';
 import 'package:nmax/utils/styles.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -219,13 +219,7 @@ Widget profileMobile(UserModel? user, bool isOwnProfile, BuildContext context){
                           clipBehavior: Clip.antiAlias,
                           color: Colors.grey[900],
                           child: ListTile(
-                            onTap: () => Navigator.push(
-                                context,
-                                CupertinoPageRoute(
-                                  builder: (context) => ChatScreen(
-                                    user: user,
-                                  ),
-                                )),
+                            onTap: () => context.push('/m/${user.username}'),
                             trailing: Icon(
                               CupertinoIcons.paperplane,
                               // color: AppColors.fg,

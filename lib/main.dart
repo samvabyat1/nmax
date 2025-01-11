@@ -3,10 +3,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nmax/backend/tests.dart';
 import 'package:nmax/firebase_options.dart';
-import 'package:nmax/navscreen.dart';
-import 'package:nmax/screens/auth/first_screen.dart';
+import 'package:nmax/routes.dart';
 import 'package:nmax/utils/styles.dart';
 
 void main() async {
@@ -27,7 +27,8 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: MRoutes().router,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         appBarTheme: AppBarTheme(
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
         useMaterial3: true,
       ),
-      home: SplashScreen(),
+      // home: SplashScreen(),
     );
   }
 }
@@ -61,12 +62,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     FirebaseAuth.instance.authStateChanges().listen(
-          (user) => Navigator.pushReplacement(
-              context,
-              CupertinoPageRoute(
-                builder: (context) =>
-                    user == null ? FirstScreen() : NavScreen(),
-              )),
+          (user) => user == null ? context.go('/auth') : context.go('/h'),
         );
   }
 

@@ -2,12 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:nmax/backend/getting.dart';
 import 'package:nmax/backend/posting.dart';
 import 'package:nmax/models/post.dart';
 import 'package:nmax/navscreen.dart';
-import 'package:nmax/screens/profile/profile_screen.dart';
 import 'package:nmax/utils/styles.dart';
 
 class FeedScreen extends StatefulWidget {
@@ -151,15 +151,8 @@ class _FeedScreenState extends State<FeedScreen>
                                         children: [
                                           ClipOval(
                                             child: InkWell(
-                                              onTap: () => Navigator.push(
-                                                  context,
-                                                  CupertinoPageRoute(
-                                                    builder: (context) =>
-                                                        ProfileScreen(
-                                                      username:
-                                                          post.user.toString(),
-                                                    ),
-                                                  )),
+                                              onTap: () => context.push(
+                                                  '/i/${post.user.toString()}'),
                                               child: Image.asset(
                                                 'assets/icon.png',
                                                 color: Colors.white,
