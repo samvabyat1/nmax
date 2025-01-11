@@ -173,7 +173,7 @@ Widget profileMobile(UserModel? user, bool isOwnProfile, BuildContext context){
                                         angle: 0.1,
                                         child: QrImageView(
                                           data:
-                                              'https://nmaxapp.web.app/${user.username}',
+                                              'https://nmaxapp.web.app/i/${user.username}',
                                           size: 200,
                                           embeddedImage:
                                               AssetImage('assets/icon.png'),

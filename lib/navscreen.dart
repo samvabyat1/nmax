@@ -1,3 +1,4 @@
+import 'package:app_links/app_links.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -43,6 +44,9 @@ class _NavScreenState extends State<NavScreen> {
   void initState() {
     super.initState();
     setUser();
+    AppLinks().uriLinkStream.listen(
+          (uri) => context.go(uri.path),
+        );
   }
 
   setUser() async {

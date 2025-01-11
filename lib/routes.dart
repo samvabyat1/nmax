@@ -9,6 +9,7 @@ import 'package:nmax/screens/profile/profile_screen.dart';
 
 class MRoutes {
   GoRouter router = GoRouter(
+    initialLocation: '/',
     routes: [
       GoRoute(
         path: '/',
@@ -48,7 +49,9 @@ class MRoutes {
       ),
     ],
     redirect: (context, state) {
-      if (FirebaseAuth.instance.currentUser == null) return '/auth';
+      print(state.matchedLocation);
+      if (FirebaseAuth.instance.currentUser == null &&
+          state.matchedLocation.startsWith('/i/') == false) return '/auth';
       return null;
     },
   );

@@ -1,0 +1,14 @@
+[
+    {
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.example.nmax",
+        "sha256_cert_fingerprints": [
+          "2C:B5:BD:5B:8E:D4:22:C5:9F:3E:36:E5:9C:2E:E8:B9:07:9E:28:B2:93:9A:34:21:72:36:E7:0B:E7:82:6B:BD",
+          "4E:2A:F2:F4:5F:7F:ED:E7:B5:01:09:4B:B4:3B:B2:2C:DC:FA:49:2A:53:E8:21:5A:5C:85:7F:4C:CF:26:86:C3"
+        ]
+      }
+    }
+  ]
+  
