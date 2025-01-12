@@ -9,11 +9,15 @@
 <p align="center">
   <img src="./screenshots/Screenshot_2025-01-12-17-04-21-16_78880eff352cf9cd49300727776bf8ec.jpg" width="30%" />
   <img src="./screenshots/Screenshot_2025-01-12-17-05-12-98_78880eff352cf9cd49300727776bf8ec.jpg" width="30%" />
+  <img src="./screenshots/Screenshot_2025-01-12-17-19-45-12_78880eff352cf9cd49300727776bf8ec.jpg" width="30%" />
+<br>
   <img src="./screenshots/Screenshot_2025-01-12-17-05-47-23_78880eff352cf9cd49300727776bf8ec.jpg" width="30%" />
+  <img src="./screenshots/Screenshot_2025-01-12-17-06-08-78_78880eff352cf9cd49300727776bf8ec.jpg" width="30%" />
+  <img src="./screenshots/Screenshot_2025-01-12-16-55-29-04_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" width="30%" />
 <br>
   <img src="./screenshots/Screenshot_2025-01-12-17-05-30-41_78880eff352cf9cd49300727776bf8ec.jpg" width="30%" />
+  <img src="./screenshots/Screenshot_2025-01-12-17-22-50-95_78880eff352cf9cd49300727776bf8ec.jpg" width="30%" />
   <img src="./screenshots/Screenshot_2025-01-12-17-06-33-72_78880eff352cf9cd49300727776bf8ec.jpg" width="30%" />
-  <img src="./screenshots/Screenshot_2025-01-12-17-06-08-78_78880eff352cf9cd49300727776bf8ec.jpg" width="30%" />
 </p>
 
 ## Features
