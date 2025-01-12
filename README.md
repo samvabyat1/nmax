@@ -7,13 +7,13 @@
 ---
 
 <p align="center">
-  <img src="./fastlane/metadata/android/en-US/images/phoneScreenshots/1.jpg" width="30%" />
-  <img src="./fastlane/metadata/android/en-US/images/phoneScreenshots/2.jpg" width="30%" />
-  <img src="./fastlane/metadata/android/en-US/images/phoneScreenshots/3.jpg" width="30%" />
-
-  <img src="./fastlane/metadata/android/en-US/images/phoneScreenshots/4.jpg" width="30%" />
-  <img src="./fastlane/metadata/android/en-US/images/phoneScreenshots/5.jpg" width="30%" />
-  <img src="./fastlane/metadata/android/en-US/images/phoneScreenshots/6.jpg" width="30%" />
+  <img src="./screenshots/Screenshot_2025-01-12-17-04-21-16_78880eff352cf9cd49300727776bf8ec.jpg" width="30%" />
+  <img src="./screenshots/Screenshot_2025-01-12-17-05-12-98_78880eff352cf9cd49300727776bf8ec.jpg" width="30%" />
+  <img src="./screenshots/Screenshot_2025-01-12-17-05-47-23_78880eff352cf9cd49300727776bf8ec.jpg" width="30%" />
+<br>
+  <img src="./screenshots/Screenshot_2025-01-12-17-05-30-41_78880eff352cf9cd49300727776bf8ec.jpg" width="30%" />
+  <img src="./screenshots/Screenshot_2025-01-12-17-06-33-72_78880eff352cf9cd49300727776bf8ec.jpg" width="30%" />
+  <img src="./screenshots/Screenshot_2025-01-12-17-06-08-78_78880eff352cf9cd49300727776bf8ec.jpg" width="30%" />
 </p>
 
 ## Features
