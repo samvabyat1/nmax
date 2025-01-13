@@ -28,6 +28,7 @@
 - Community channels
 - Private chatting
 - Ask Gemini™
+- Nearby Approach**
 - Cross platform
 - ...
 
